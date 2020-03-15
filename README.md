@@ -1,6 +1,6 @@
-## user-profile-service
+## spfx-UerProfileService
 
-This is where you include your WebPart documentation.
+Quick spfx webpart to demonstrate an UserProfileService for SharePoint Online.
 
 ### Building the code
 
