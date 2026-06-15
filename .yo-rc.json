@@ -1,12 +1,23 @@
 {
   "@microsoft/generator-sharepoint": {
-    "isCreatingSolution": true,
+    "whichFolder": "subdir",
+    "solutionName": "user-profile-service",
     "environment": "spo",
-    "version": "1.10.0",
+    "skipFeatureDeployment": false,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "Ups",
+    "componentDescription": "Use to demo UserProfileService",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.22.2",
+    "sdksVersions": {},
+    "version": "1.23.0",
     "libraryName": "user-profile-service",
-    "libraryId": "f205e2c4-3d2c-46e0-996d-c19fe111eb6f",
+    "libraryId": "39aa127c-9fdb-47f0-8bcd-ff3c030aff59",
     "packageManager": "npm",
-    "isDomainIsolated": false,
-    "componentType": "webpart"
+    "solutionShortDescription": "user-profile-service description",
+    "isDomainIsolated": false
   }
 }

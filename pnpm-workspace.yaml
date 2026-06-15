@@ -1,0 +1,5 @@
+# pnpm 11 reads build-script settings from this file (no longer package.json).
+# unrs-resolver ships a native binding built via a postinstall script; allow it so
+# `pnpm install` exits cleanly (Heft runs an install check before every build).
+allowBuilds:
+  unrs-resolver: true

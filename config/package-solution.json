@@ -2,10 +2,36 @@
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
     "name": "user-profile-service-client-side-solution",
-    "id": "f205e2c4-3d2c-46e0-996d-c19fe111eb6f",
+    "id": "39aa127c-9fdb-47f0-8bcd-ff3c030aff59",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.23.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "user-profile-service description"
+      },
+      "longDescription": {
+        "default": "user-profile-service description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "user-profile-service Feature",
+        "description": "The feature that activates elements of the user-profile-service solution.",
+        "id": "b47ca5c9-0216-40ee-87c3-955bb26cb097",
+        "version": "1.0.0.0"
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/user-profile-service.sppkg"
