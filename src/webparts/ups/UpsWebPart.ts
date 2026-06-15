@@ -3,20 +3,19 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
-//import * as strings from 'UpsWebPartStrings';
 import Ups from './components/Ups';
-import { IUpsProps } from './components/Ups';
+import { IUpsProps } from './components/IUpsProps';
 
 export interface IUpsWebPartProps {
-  //description: string;
 }
 
-export default class UpsWebPart extends BaseClientSideWebPart <IUpsWebPartProps> {
+export default class UpsWebPart extends BaseClientSideWebPart<IUpsWebPartProps> {
 
   public render(): void {
     const element: React.ReactElement<IUpsProps> = React.createElement(
       Ups,
       {
+        context: this.context
       }
     );
 
@@ -30,26 +29,4 @@ export default class UpsWebPart extends BaseClientSideWebPart <IUpsWebPartProps>
   protected get dataVersion(): Version {
     return Version.parse('1.0');
   }
-
-  // protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
-  //   return {
-  //     pages: [
-  //       {
-  //         header: {
-  //           description: strings.PropertyPaneDescription
-  //         },
-  //         groups: [
-  //           {
-  //             groupName: strings.BasicGroupName,
-  //             groupFields: [
-  //               PropertyPaneTextField('description', {
-  //                 label: strings.DescriptionFieldLabel
-  //               })
-  //             ]
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   };
-  // }
 }

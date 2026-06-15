@@ -1,116 +1,64 @@
 import * as React from 'react';
 import styles from './Ups.module.scss';
-import { escape } from '@microsoft/sp-lodash-subset';
+import type { IUpsProps } from './IUpsProps';
 import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
-import { List } from "office-ui-fabric-react/lib/List";
-import { DetailsList, DetailsListLayoutMode, SelectionMode } from "office-ui-fabric-react/lib/DetailsList";
-
-import { IUserProperty, UserProfileService, UserProfileServiceMock } from "../../../services";
-
-export interface IUpsProps {
-}
+import { DetailsList, DetailsListLayoutMode, SelectionMode } from '@fluentui/react/lib/DetailsList';
+import {
+  IUserProperty,
+  IUserProfileService,
+  UserProfileService,
+  UserProfileServiceMock
+} from '../../../services';
 
 export interface IUpsState {
   userProperties: IUserProperty[];
-  webpartState: any;
-}
-enum WebpartState {
-  loading,
-  showMyProperties,
-  showUpdateProperties,
-  showOtherProperties
+  loading: boolean;
 }
 
 export default class Ups extends React.Component<IUpsProps, IUpsState> {
-  private _ups: any;
-  
-  constructor (props: IUpsProps) {
+  private _ups: IUserProfileService;
+
+  constructor(props: IUpsProps) {
     super(props);
-    switch (Environment.type) {
-      case EnvironmentType.SharePoint: {
-        this._ups = new UserProfileService();
-        break;
-      }
-      default: {
-        this._ups = new UserProfileServiceMock();
-      }
-    }
-		this.state = {
+
+    // Use the live profile service in SharePoint, the mock everywhere else (local workbench).
+    this._ups = Environment.type === EnvironmentType.SharePoint
+      ? new UserProfileService(props.context)
+      : new UserProfileServiceMock();
+
+    this.state = {
       userProperties: [],
-      webpartState: WebpartState.loading
-		};
+      loading: true
+    };
+  }
 
-  } 
-
-  public async componentDidMount() {
+  public async componentDidMount(): Promise<void> {
     const userProperties = await this._ups.GetUserProfileProperties();
-    this.setState({
-      userProperties: userProperties,
-      webpartState: WebpartState.showMyProperties
-    });
+    this.setState({ userProperties, loading: false });
   }
 
   public render(): React.ReactElement<IUpsProps> {
-    const items = this.state.userProperties;
-    return (
-      <div className={ styles.ups }>
-        <div className={ styles.container }>
-          <div className={ styles.row }>
-            <div className={ styles.column }>
-              <span className={ styles.title }>User Profile Service Demo</span>
-              <div>
-              {/* { this.state.webpartState != WebpartState.loading {return <div></div> : */}
+    const { userProperties, loading } = this.state;
 
-              <p className={ styles.subTitle }>My Properties</p>
-              <p className={ styles.description }>
-                <button className={ styles.button }>
-                  <span className={ styles.label }>Show My Properties</span>
-                </button>
-                <button className={ styles.button }>
-                  <span className={ styles.label }>Update A Custom Properties</span>
-                </button>
-              </p>
-              <div style={ {width: '100%', display: 'block'} } >
-              <DetailsList  
+    return (
+      <div className={styles.ups}>
+        <div className={styles.container}>
+          <span className={styles.title}>User Profile Service Demo</span>
+          <p className={styles.subTitle}>My Properties</p>
+          {loading
+            ? <p>Loading profile properties&hellip;</p>
+            : <DetailsList
                 layoutMode={DetailsListLayoutMode.fixedColumns}
                 selectionMode={SelectionMode.none}
-                items={ items }
-                //setKey="property"
+                items={userProperties}
                 columns={[
-                  { key: "property", name: "Property", fieldName: "property", minWidth: 20, maxWidth: 200 },
-                  { key: "value", name: "Value", fieldName: "value", minWidth: 200, maxWidth:1000 }
+                  { key: 'property', name: 'Property', fieldName: 'property', minWidth: 20, maxWidth: 200 },
+                  { key: 'value', name: 'Value', fieldName: 'value', minWidth: 200, maxWidth: 1000 }
                 ]}
               />
-              </div>
-              <p className={ styles.subTitle }>Other User Properties</p>
-              <p className={ styles.description }>
-                <button className={ styles.button }>
-                  <span className={ styles.label }>Show User Properties</span>
-                </button>
-              </p>
-            </div>
-            </div>
-          </div>
+          }
         </div>
       </div>
     );
-    // if (this.state.userProperties) {
-    //     this._renderList(this.state.userProperties);
-    // }
   }
-
-  // private _renderList(items: IUserProperty[]): string {
-  //   let html: string = '<table class="TFtable" border=1 width=100% style="border-collapse: collapse;">';
-  //   html += `<th>Property</th><th>Value</th>`;
-  //   items.forEach((item: IUserProperty) => {
-  //     html += `
-  //         <tr>
-  //         <td>${item.property}</td>
-  //         <td>${item.value}</td>
-  //         </tr>
-  //         `;
-  //   });
-  //   html += `</table>`;
-  //   return html;
-  // }
 }
