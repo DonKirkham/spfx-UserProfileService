@@ -3,3 +3,29 @@
 # `pnpm install` exits cleanly (Heft runs an install check before every build).
 allowBuilds:
   unrs-resolver: true
+
+# Security overrides for transitive dependencies whose parents pin a vulnerable
+# version, so `pnpm update` cannot reach the patch on its own. All are dev-scope
+# build tooling. Drop an entry once the parent ships a range that allows the fix.
+overrides:
+  # ajv@8 pins fast-uri 3.1.2 - GHSA host confusion via backslash authority
+  # delimiter and failed IDN canonicalization
+  fast-uri: ^3.1.4
+  # postcss-svgo@5 pins svgo 2.8.2 - removeScripts plugin leaves some
+  # executable scripts intact
+  svgo: ^2.8.3
+  # express@4 pins qs 6.14.2 exactly - qs.stringify DoS on null entries in
+  # comma-format arrays
+  qs: ^6.15.2
+  # sockjs/jest-junit/spfx-heft-plugins pin uuid 8/9, which have no backported
+  # fix for the v3/v5/v6 buf bounds check - all three use only the v1/v4 named
+  # exports, which uuid 11 still provides
+  uuid: ^11.1.1
+
+# NOT overridden: brace-expansion. GHSA-mh99-v99m-4gvg is scoped `<=5.0.7`,
+# which by semver comparison also covers the 1.x and 2.x lines minimatch 3/5
+# depend on, and no fix was backported to those. Forcing 5.x breaks them:
+# brace-expansion 5 exports { expand } while minimatch 3 calls the module
+# itself as a function, so any glob containing `{}` throws
+# "expand is not a function". GitHub auto-dismissed this alert for the same
+# reason. Revisit if minimatch ships a release depending on brace-expansion 5.
