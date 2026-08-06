@@ -9,8 +9,9 @@ allowBuilds:
 # build tooling. Drop an entry once the parent ships a range that allows the fix.
 overrides:
   # ajv@8 pins fast-uri 3.1.2 - GHSA host confusion via backslash authority
-  # delimiter and failed IDN canonicalization
-  fast-uri: ^3.1.4
+  # delimiter and failed IDN canonicalization; 3.1.5 closes the follow-up
+  # CVE-2026-18446 (`\\`, `/\`, `\/` authority introducers)
+  fast-uri: ^3.1.5
   # postcss-svgo@5 pins svgo 2.8.2 - removeScripts plugin leaves some
   # executable scripts intact
   svgo: ^2.8.3
@@ -21,11 +22,11 @@ overrides:
   # fix for the v3/v5/v6 buf bounds check - all three use only the v1/v4 named
   # exports, which uuid 11 still provides
   uuid: ^11.1.1
-
-# NOT overridden: brace-expansion. GHSA-mh99-v99m-4gvg is scoped `<=5.0.7`,
-# which by semver comparison also covers the 1.x and 2.x lines minimatch 3/5
-# depend on, and no fix was backported to those. Forcing 5.x breaks them:
-# brace-expansion 5 exports { expand } while minimatch 3 calls the module
-# itself as a function, so any glob containing `{}` throws
-# "expand is not a function". GitHub auto-dismissed this alert for the same
-# reason. Revisit if minimatch ships a release depending on brace-expansion 5.
+  # brace-expansion DoS via unbounded intermediate arrays. Pinned per major
+  # line, not to 5.x: brace-expansion 5 exports { expand } while minimatch 3
+  # calls the module itself as a function, so a blanket `^5` override makes any
+  # glob containing `{}` throw "expand is not a function". Upstream backported
+  # the fix to every line, so each stays on its own API.
+  brace-expansion@1: ^1.1.18
+  brace-expansion@2: ^2.1.4
+  brace-expansion@5: ^5.0.9
