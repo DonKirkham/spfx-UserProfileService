@@ -1,0 +1,94 @@
+{
+  "title": "Upgrade project user-profile-service-client-side-solution to v1.23.2",
+  "steps": [
+    {
+      "title": "REQUIRED: @microsoft/sp-core-library (FN001001)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-core-library\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-core-library@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-core-library@1.23.2\"])",
+      "line": 17,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-lodash-subset (FN001002)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-lodash-subset\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-lodash-subset@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-lodash-subset@1.23.2\"])",
+      "line": 18,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-office-ui-fabric-core (FN001003)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-office-ui-fabric-core\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-office-ui-fabric-core@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-office-ui-fabric-core@1.23.2\"])",
+      "line": 19,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-webpart-base (FN001004)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-webpart-base\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-webpart-base@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-webpart-base@1.23.2\"])",
+      "line": 21,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-property-pane (FN001021)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-property-pane\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-property-pane@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-property-pane@1.23.2\"])",
+      "line": 20,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-component-base (FN001023)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dependency package @microsoft/sp-component-base\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-component-base@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-component-base@1.23.2\"])",
+      "line": 16,
+      "file": "package.json"
+    },
+    {
+      "title": "OPTIONAL: @microsoft/sp-adaptive-card-extension-base (FN001034)",
+      "description": "### OPTIONAL\r\n\r\nInstall SharePoint Framework dependency package @microsoft/sp-adaptive-card-extension-base\r\n\r\nExecute the following command:\r\n\r\n[`npm i -SE @microsoft/sp-adaptive-card-extension-base@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -SE @microsoft/sp-adaptive-card-extension-base@1.23.2\"])",
+      "line": 14,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/sp-module-interfaces (FN002002)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dev dependency package @microsoft/sp-module-interfaces\r\n\r\nExecute the following command:\r\n\r\n[`npm i -DE @microsoft/sp-module-interfaces@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -DE @microsoft/sp-module-interfaces@1.23.2\"])",
+      "line": 32,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/eslint-plugin-spfx (FN002022)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dev dependency package @microsoft/eslint-plugin-spfx\r\n\r\nExecute the following command:\r\n\r\n[`npm i -DE @microsoft/eslint-plugin-spfx@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -DE @microsoft/eslint-plugin-spfx@1.23.2\"])",
+      "line": 31,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/eslint-config-spfx (FN002023)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dev dependency package @microsoft/eslint-config-spfx\r\n\r\nExecute the following command:\r\n\r\n[`npm i -DE @microsoft/eslint-config-spfx@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -DE @microsoft/eslint-config-spfx@1.23.2\"])",
+      "line": 30,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/spfx-web-build-rig (FN002030)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dev dependency package @microsoft/spfx-web-build-rig\r\n\r\nExecute the following command:\r\n\r\n[`npm i -DE @microsoft/spfx-web-build-rig@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -DE @microsoft/spfx-web-build-rig@1.23.2\"])",
+      "line": 34,
+      "file": "package.json"
+    },
+    {
+      "title": "REQUIRED: @microsoft/spfx-heft-plugins (FN002034)",
+      "description": "### REQUIRED\r\n\r\nUpgrade SharePoint Framework dev dependency package @microsoft/spfx-heft-plugins\r\n\r\nExecute the following command:\r\n\r\n[`npm i -DE @microsoft/spfx-heft-plugins@1.23.2`](command:codetour.sendTextToTerminal?[\"npm i -DE @microsoft/spfx-heft-plugins@1.23.2\"])",
+      "line": 33,
+      "file": "package.json"
+    },
+    {
+      "title": "RECOMMENDED: .yo-rc.json version (FN010001)",
+      "description": "### RECOMMENDED\r\n\r\nUpdate version in .yo-rc.json\r\n\r\n\r\n```json\r\n{\n  \"@microsoft/generator-sharepoint\": {\n    \"version\": \"1.23.2\"\n  }\n}\r\n```",
+      "line": 16,
+      "file": ".yo-rc.json"
+    },
+    {
+      "title": "OPTIONAL: Run npm dedupe (FN017001)",
+      "description": "### OPTIONAL\r\n\r\nIf, after upgrading npm packages, when building the project you have errors similar to: \"error TS2345: Argument of type 'SPHttpClientConfiguration' is not assignable to parameter of type 'SPHttpClientConfiguration'\", try running 'npm dedupe' to cleanup npm packages.\r\n\r\nExecute the following command:\r\n\r\n[`npm dedupe`](command:codetour.sendTextToTerminal?[\"npm dedupe\"])",
+      "line": 1,
+      "file": "package.json"
+    },
+    {
+      "file": ".tours/upgrade.tour",
+      "title": "RECOMMENDED: Delete tour",
+      "description": "### THAT'S IT!!!\r\nOnce you have tested that your upgrade is successful, you can delete the `.tour` folder and its contents. Otherwise, you'll be prompted to launch this CodeTour every time you open this project."
+    }
+  ]
+}

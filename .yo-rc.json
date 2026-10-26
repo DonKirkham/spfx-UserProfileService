@@ -11,12 +11,12 @@
     "componentDescription": "Use to demo UserProfileService",
     "plusBeta": false,
     "isCreatingSolution": true,
-    "nodeVersion": "22.22.2",
+    "nodeVersion": "22.23.3",
     "sdksVersions": {},
-    "version": "1.23.0",
+    "version": "1.23.2",
     "libraryName": "user-profile-service",
     "libraryId": "39aa127c-9fdb-47f0-8bcd-ff3c030aff59",
-    "packageManager": "npm",
+    "packageManager": "pnpm",
     "solutionShortDescription": "user-profile-service description",
     "isDomainIsolated": false
   }
