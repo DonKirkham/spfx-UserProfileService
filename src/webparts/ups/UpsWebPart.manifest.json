@@ -18,8 +18,8 @@
   "preconfiguredEntries": [{
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
     "group": { "default": "Advanced" },
-    "title": { "default": "UPS Demo" },
-    "description": { "default": "Use to demo UserProfileService" },
+    "title": { "default": "User Profile Explorer" },
+    "description": { "default": "Browse SharePoint user profile properties for any site user" },
     "officeFabricIconFontName": "PeopleAlert",
     "properties": {
     }

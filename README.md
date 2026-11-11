@@ -22,7 +22,7 @@ npm install
 npm run build    # heft test --production && heft package-solution --production
 ```
 
-The `.sppkg` is produced at `sharepoint/solution/ups-demo.sppkg` — upload it to
+The `.sppkg` is produced at `sharepoint/solution/user-profile-explorer.sppkg` — upload it to
 your tenant App Catalog.
 
 ### Build options (Heft)
