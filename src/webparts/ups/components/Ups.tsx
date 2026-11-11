@@ -2,7 +2,8 @@ import * as React from 'react';
 import styles from './Ups.module.scss';
 import type { IUpsProps } from './IUpsProps';
 import { Environment, EnvironmentType } from '@microsoft/sp-core-library';
-import { DetailsList, DetailsListLayoutMode, SelectionMode } from '@fluentui/react/lib/DetailsList';
+import { DetailsList, DetailsListLayoutMode, IColumn, SelectionMode } from '@fluentui/react/lib/DetailsList';
+import { getTheme } from '@fluentui/react/lib/Styling';
 import { Dropdown, IDropdownOption } from '@fluentui/react/lib/Dropdown';
 import {
   ISiteUser,
@@ -11,6 +12,43 @@ import {
   UserProfileService,
   UserProfileServiceMock
 } from '../../../services';
+
+// Longest a column may grow before its text is truncated with an ellipsis.
+const MAX_PROPERTY_WIDTH = 300;
+const MAX_VALUE_WIDTH = 800;
+
+const measureCanvas = document.createElement('canvas');
+
+/** Rendered pixel width of the widest string, in the given CSS font. */
+function measureMaxWidth(texts: string[], font: string): number {
+  const ctx = measureCanvas.getContext('2d');
+  if (!ctx) {
+    return 0;
+  }
+  ctx.font = font;
+  return texts.reduce((max, text) => Math.max(max, ctx.measureText(text).width), 0);
+}
+
+/** Columns sized to their content, so the list (and the web part) is only as wide as needed. */
+function buildColumns(items: IUserProperty[]): IColumn[] {
+  const { fonts } = getTheme();
+  const cellFont = `${fonts.small.fontSize} ${fonts.small.fontFamily}`;
+  const headerFont = `600 ${fonts.medium.fontSize} ${fonts.medium.fontFamily}`;
+
+  const fit = (header: string, values: string[], max: number): number =>
+    Math.min(max, Math.ceil(Math.max(
+      measureMaxWidth([header], headerFont),
+      measureMaxWidth(values, cellFont)
+    )) + 4);
+
+  const propertyWidth = fit('Property', items.map(i => i.property ?? ''), MAX_PROPERTY_WIDTH);
+  const valueWidth = fit('Value', items.map(i => String(i.value ?? '')), MAX_VALUE_WIDTH);
+
+  return [
+    { key: 'property', name: 'Property', fieldName: 'property', minWidth: propertyWidth, maxWidth: propertyWidth },
+    { key: 'value', name: 'Value', fieldName: 'value', minWidth: valueWidth, maxWidth: valueWidth }
+  ];
+}
 
 export interface IUpsState {
   users: ISiteUser[];
@@ -70,7 +108,7 @@ export default class Ups extends React.Component<IUpsProps, IUpsState> {
     return (
       <div className={styles.ups}>
         <div className={styles.container}>
-          <span className={styles.title}>User Profile Service Property Demo</span>
+          <span className={styles.title}>User Profile Explorer</span>
           <Dropdown
             label="User"
             className={styles.userPicker}
@@ -78,7 +116,7 @@ export default class Ups extends React.Component<IUpsProps, IUpsState> {
             selectedKey={selectedLoginName}
             onChange={this._onUserChanged}
           />
-          <p className={styles.subTitle}>Properties for {selected.name} ({selected.email})</p>
+          <div className={styles.subTitle}>Properties for {selected.name} ({selected.email})</div>
           {loading
             ? <p>Loading profile properties&hellip;</p>
             : <DetailsList
@@ -86,13 +124,12 @@ export default class Ups extends React.Component<IUpsProps, IUpsState> {
                 // selected user's properties instead of keeping the previous user's height.
                 key={selectedLoginName}
                 onShouldVirtualize={() => false}
+                // Drop the header's built-in 16px top padding so the list sits right under the subtitle.
+                styles={{ root: { marginTop: 0 }, headerWrapper: { selectors: { '.ms-DetailsHeader': { paddingTop: 0 } } } }}
                 layoutMode={DetailsListLayoutMode.fixedColumns}
                 selectionMode={SelectionMode.none}
                 items={userProperties}
-                columns={[
-                  { key: 'property', name: 'Property', fieldName: 'property', minWidth: 20, maxWidth: 200 },
-                  { key: 'value', name: 'Value', fieldName: 'value', minWidth: 200, maxWidth: 1000 }
-                ]}
+                columns={buildColumns(userProperties)}
               />
           }
         </div>

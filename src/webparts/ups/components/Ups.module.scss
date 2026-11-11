@@ -1,6 +1,11 @@
 @import 'pkg:@fluentui/react/dist/sass/References.scss';
 
 .ups {
+  // Shrink-wrap to the widest child (the properties list), but never exceed the section;
+  // the list scrolls horizontally if it is wider than the space available.
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
   padding: 1em;
   color: "[theme:bodyText, default: #323130]";
@@ -9,7 +14,6 @@
 
 .container {
   display: block;
-  width: 100%;
 }
 
 .title {
@@ -19,7 +23,9 @@
 }
 
 .userPicker {
-  max-width: 400px;
+  // Fixed width: in a shrink-wrapped parent the dropdown would otherwise collapse.
+  width: 400px;
+  max-width: 100%;
   margin-top: 1em;
 }
 
@@ -27,5 +33,7 @@
   @include ms-font-l;
   display: block;
   font-weight: 600;
+  font-style: italic;
   margin-top: 1em;
+  // margin-bottom: -0em;
 }
