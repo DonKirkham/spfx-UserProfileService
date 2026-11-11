@@ -5,11 +5,11 @@ the current user's Azure AD properties and SharePoint User Profile properties (v
 renders them in a Fluent UI `DetailsList`. Outside SharePoint (e.g. the local workbench) it
 falls back to a mock service.
 
-Built on **SPFx 1.23.2** (Heft toolchain, React 17, Fluent UI 8, PnPjs v4, TypeScript 5.8).
+Built on **SPFx 1.24.1** (Heft toolchain, React 18, Fluent UI 8, PnPjs v4, TypeScript 5.8).
 
 ### Prerequisites
 
-* Node.js **22 LTS** — this repo pins the version via `.node-version` (fnm alias `spfx-1.23.2`).
+* Node.js **22, 24 or 26** — this repo pins the version via `.node-version` (fnm alias `spfx-1.24.1`, Node 26).
   With [fnm](https://github.com/Schniz/fnm): `fnm use` (reads `.node-version`).
 * [pnpm](https://pnpm.io) as the package manager.
 
@@ -17,7 +17,7 @@ Built on **SPFx 1.23.2** (Heft toolchain, React 17, Fluent UI 8, PnPjs v4, TypeS
 
 ```bash
 git clone <repo>
-fnm use          # selects Node 22 from .node-version
+fnm use          # selects Node 26 from .node-version
 pnpm install
 pnpm run build   # heft test --production && heft package-solution --production
 ```
