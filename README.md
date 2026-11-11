@@ -11,25 +11,25 @@ Built on **SPFx 1.24.1** (Heft toolchain, React 18, Fluent UI 8, PnPjs v4, TypeS
 
 * Node.js **22, 24 or 26** — this repo pins the version via `.node-version` (fnm alias `spfx-1.24.1`, Node 26).
   With [fnm](https://github.com/Schniz/fnm): `fnm use` (reads `.node-version`).
-* [pnpm](https://pnpm.io) as the package manager.
+* npm as the package manager.
 
 ### Building the code
 
 ```bash
 git clone <repo>
 fnm use          # selects Node 26 from .node-version
-pnpm install
-pnpm run build   # heft test --production && heft package-solution --production
+npm install
+npm run build    # heft test --production && heft package-solution --production
 ```
 
-The `.sppkg` is produced at `sharepoint/solution/user-profile-service.sppkg` — upload it to
+The `.sppkg` is produced at `sharepoint/solution/ups-demo.sppkg` — upload it to
 your tenant App Catalog.
 
 ### Build options (Heft)
 
-| Command                | Purpose                                              |
-| ---------------------- | ---------------------------------------------------- |
-| `pnpm start`           | `heft start --clean` — local workbench dev server    |
-| `pnpm run build`       | production test + bundle + package the `.sppkg`      |
-| `pnpm run clean`       | `heft clean` — remove build output                   |
-| `pnpm exec heft build` | compile + lint + webpack bundle (no package)         |
+| Command          | Purpose                                              |
+| ---------------- | ---------------------------------------------------- |
+| `npm start`      | `heft start --clean` — local workbench dev server    |
+| `npm run build`  | production test + bundle + package the `.sppkg`      |
+| `npm run clean`  | `heft clean` — remove build output                   |
+| `npx heft build` | compile + lint + webpack bundle (no package)         |
