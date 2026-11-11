@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "user-profile-service-client-side-solution",
+    "name": "UPS Demo",
     "id": "39aa127c-9fdb-47f0-8bcd-ff3c030aff59",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
@@ -15,10 +15,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "user-profile-service description"
+        "default": "Pulls in user profile properties"
       },
       "longDescription": {
-        "default": "user-profile-service description"
+        "default": "Demonstrates the use of the UserProfileService to pull in user profile properties"
       },
       "screenshotPaths": [],
       "videoUrl": "",
@@ -34,6 +34,6 @@
     ]
   },
   "paths": {
-    "zippedPackage": "solution/user-profile-service.sppkg"
+    "zippedPackage": "solution/ups-demo.sppkg"
   }
 }

@@ -18,6 +18,11 @@
   font-weight: 600;
 }
 
+.userPicker {
+  max-width: 400px;
+  margin-top: 1em;
+}
+
 .subTitle {
   @include ms-font-l;
   display: block;
